@@ -1,4 +1,5 @@
 import useTheme from "../../hooks/useTheme";
+import styles from "./Title.styles";
 
 const Title = (
     props: {
@@ -7,19 +8,10 @@ const Title = (
     },
 ): JSX.Element => {
     const { themeState } = useTheme();
-    const styles = {
-        container: {
-            backgroundColor: themeState.backgroundColor,
-            color: themeState.title,
-            padding: '2px 8px',
-            fontSize: '24px',
-            fontWeight: 'bolder',
-            textAlign: props.align || 'left',
-        },
-    };
+    const align: string = props.align || 'left';
 
     return (
-        <div style={styles.container}>
+        <div className={styles.container(themeState, align)}>
             {props.text}
         </div>
     );
