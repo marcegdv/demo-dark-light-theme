@@ -1,4 +1,4 @@
-import { LIGHT_MODE, ThemeListType } from "../Context/Theme/ThemeColors";
+import { LIGHT_MODE, ThemeListType, themeNames } from "../Context/Theme/ThemeColors";
 
 export const AppStorage = () => {
     const storage = window.localStorage;
@@ -13,6 +13,14 @@ export const AppStorage = () => {
 };
 
 export const validateTheme = (): ThemeListType => {
-    if (!AppStorage().getTheme()) AppStorage().setTheme(LIGHT_MODE);
-    return AppStorage().getTheme() as ThemeListType;
+    const last: string = AppStorage().getTheme();
+    let theme: string = LIGHT_MODE;
+    if (last) {
+        const list: string[] = themeNames();
+        if (list.includes(last)) {
+            theme = last;
+        };
+    };
+    AppStorage().setTheme(theme);
+    return theme as ThemeListType;
 };
