@@ -8,7 +8,7 @@ export const AppStorage = (isSession?: boolean) => {
     };
     const get = (key: string): any => {
         try {
-            JSON.parse(storage.getItem(key) || '');
+            JSON.parse(storage.getItem(key) || JSON.stringify(''));
         } catch (error) {
             storage.setItem(key, JSON.stringify(''));
         };
