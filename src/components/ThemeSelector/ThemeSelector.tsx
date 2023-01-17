@@ -14,6 +14,7 @@ const ThemeSelector = (): JSX.Element => {
             onChange={(event) => handleOnChange(event)}
             value={themeState.name}
         >
+            <option value='no'>- Modos -</option>
             {themeNames().map((name: string, index: number) => {
                 return (
                     <option
